@@ -1,7 +1,13 @@
+import React from "react";
+import { useState } from "react";
+
 export const MainSection = () => {
+  // Use useState to maintain the state of textLength
+  const [textLength, setTextLength] = useState(0);
+
   function copyText() {
     const element = document.querySelector(".mb-6 p");
-    const button = document.getElementById("button") ;
+    const button = document.getElementById("button");
 
     if (element instanceof HTMLElement) {
       // 'element' is guaranteed to be an HTMLElement, not null
@@ -25,11 +31,19 @@ export const MainSection = () => {
       console.error("Element not found");
     }
   }
-
+  // Use useEffect to update the textLength whenever the component renders
+  React.useEffect(() => {
+    const element = document.querySelector(".mb-6 p");
+    if (element instanceof HTMLElement) {
+      setTextLength(element.innerText.length);
+    } else {
+      setTextLength(0);
+    }
+  }, []);
   return (
     <>
       <div className="mb-6 flex justify-between">
-        <p>asdasdxczsad</p>
+        <p>1234567</p>
         <button
           onClick={copyText}
           type="button"
@@ -39,9 +53,9 @@ export const MainSection = () => {
           Copy
         </button>
       </div>
-      <div className="flex justify-between">
+      <div className="flex mb-2 justify-between">
         <p>Character Length</p>
-        <p>10</p>
+        <p>{textLength}</p>
       </div>
     </>
   );
