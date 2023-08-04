@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import "./App.css";
 import { MainContainer, MainSection } from "./components/";
 import {
@@ -17,7 +17,7 @@ function App() {
         <MainSection textLength={sliderValue} />
         <SliderBlue sliderValue={sliderValue} setSliderValue={setSliderValue} />
         <CheckBoxes />
-        <TextStrength />
+        <TextStrength textLength={sliderValue} />
         <GenerateButton />
       </MainContainer>
     </div>
