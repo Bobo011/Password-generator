@@ -42,7 +42,7 @@ export const MainSection = () => {
   }, []);
   return (
     <>
-      <div className="mb-6 flex justify-between">
+      <div className="mb-6 flex justify-between items-center">
         <p>1234567</p>
         <button
           onClick={copyText}
