@@ -2,9 +2,13 @@ import React from "react";
 
 interface MainSectionProps {
   textLength: number;
+  generatedPassword: string; // Add this line
 }
 
-export const MainSection: React.FC<MainSectionProps> = ({ textLength }) => {
+export const MainSection: React.FC<MainSectionProps> = ({
+  textLength,
+  generatedPassword,
+}) => {
   const [localText, setLocalText] = React.useState("");
 
   function copyText() {
@@ -17,7 +21,6 @@ export const MainSection: React.FC<MainSectionProps> = ({ textLength }) => {
       navigator.clipboard
         .writeText(textToCopy)
         .then(() => {
-          
           if (button) {
             button.innerHTML = "Copied";
           }
@@ -38,6 +41,21 @@ export const MainSection: React.FC<MainSectionProps> = ({ textLength }) => {
       setLocalText(generatedText);
     }
   }, [textLength]);
+
+  React.useEffect(() => {
+    // Update localText when generatedPassword changes
+    setLocalText(generatedPassword);
+  }, [generatedPassword]);
+
+  function generateRandomWord(length: number): string {
+    const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+    return result;
+  }
 
   function generateText(length: number): string {
     const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
