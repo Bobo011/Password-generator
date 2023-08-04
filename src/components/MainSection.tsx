@@ -1,49 +1,58 @@
 import React from "react";
-import { useState } from "react";
 
-export const MainSection = () => {
-  // Use useState to maintain the state of textLength
-  const [textLength, setTextLength] = useState(0);
+interface MainSectionProps {
+  textLength: number;
+}
+
+export const MainSection: React.FC<MainSectionProps> = ({ textLength }) => {
+  const [localText, setLocalText] = React.useState("");
 
   function copyText() {
     const element = document.querySelector(".mb-6 p");
     const button = document.getElementById("button");
 
     if (element instanceof HTMLElement) {
-      // 'element' is guaranteed to be an HTMLElement, not null
-      const textToCopy: string | number = element.innerText;
+      const textToCopy: string = element.innerText;
 
-      // Write the text to the clipboard
       navigator.clipboard
-        .writeText(textToCopy.toString()) // No need to convert to string, it's already a string
+        .writeText(textToCopy)
         .then(() => {
-          // Success! You can optionally show a success message here.
           console.log("Text copied to clipboard:", textToCopy);
           if (button) {
             button.innerHTML = "Copied";
           }
         })
         .catch((error) => {
-          // Handle any errors that might occur during the writeText operation.
           console.error("Error copying text to clipboard:", error);
         });
     } else {
       console.error("Element not found");
     }
   }
-  // Use useEffect to update the textLength whenever the component renders
+
   React.useEffect(() => {
     const element = document.querySelector(".mb-6 p");
     if (element instanceof HTMLElement) {
-      setTextLength(element.innerText.length);
-    } else {
-      setTextLength(0);
+      const generatedText = generateText(textLength);
+      element.innerText = generatedText;
+      setLocalText(generatedText);
     }
-  }, []);
+  }, [textLength]);
+
+  function generateText(length: number): string {
+    const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+    return result;
+  }
+
   return (
     <>
       <div className="mb-6 flex justify-between items-center">
-        <p>1234567</p>
+        <p>{localText}</p>
         <button
           onClick={copyText}
           type="button"

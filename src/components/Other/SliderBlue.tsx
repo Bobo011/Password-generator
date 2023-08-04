@@ -1,20 +1,29 @@
 import React from "react";
 
-export const SliderBlue = () => {
+interface SliderBlueProps {
+  sliderValue: number;
+  setSliderValue: (value: number) => void;
+}
+
+export const SliderBlue: React.FC<SliderBlueProps> = ({
+  sliderValue,
+  setSliderValue,
+}) => {
   function displayLength(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log(event.target.value);
+    const newValue = parseInt(event.target.value, 10);
+    setSliderValue(newValue);
   }
 
   return (
     <>
       <div className="w-full">
         <input
-        className="w-full"
+          className="w-full"
           type="range"
           min={0}
           max={12}
           step={1}
-          defaultValue={6}
+          value={sliderValue}
           onChange={displayLength}
         />
       </div>
