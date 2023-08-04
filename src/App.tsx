@@ -22,10 +22,14 @@ function App() {
         <SliderBlue sliderValue={sliderValue} setSliderValue={setSliderValue} />
         <CheckBoxes />
         <TextStrength textLength={sliderValue} />
+<<<<<<< HEAD
         <GenerateButton
           textLength={sliderValue}
           onGenerateClick={setGeneratedPassword}
         />
+=======
+        <GenerateButton />
+>>>>>>> 1e8a64afd2db6b46b08270c1c2a8531142263223
       </MainContainer>
     </div>
   );
