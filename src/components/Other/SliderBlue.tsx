@@ -20,7 +20,7 @@ export const SliderBlue: React.FC<SliderBlueProps> = ({
         <input
           className="w-full"
           type="range"
-          min={0}
+          min={1}
           max={12}
           step={1}
           value={sliderValue}

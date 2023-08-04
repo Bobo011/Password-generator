@@ -17,7 +17,7 @@ export const MainSection: React.FC<MainSectionProps> = ({ textLength }) => {
       navigator.clipboard
         .writeText(textToCopy)
         .then(() => {
-          console.log("Text copied to clipboard:", textToCopy);
+          
           if (button) {
             button.innerHTML = "Copied";
           }
