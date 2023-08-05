@@ -27,7 +27,7 @@ export const MainSection: React.FC<MainSectionProps> = ({
             // Reset copy button text after a brief delay
             setTimeout(() => {
               button.innerHTML = "Copy";
-            }, 5000);
+            }, 3000);
           }
         })
         .catch((error) => {
