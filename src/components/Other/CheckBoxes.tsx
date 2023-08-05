@@ -23,7 +23,7 @@ export const CheckBoxes: React.FC<CheckBoxesProps> = ({
 }) => {
   return (
     <>
-      <div className="flex mb-5 mt-2 justify-between">
+      <div className="flex mb-5  mt-2 justify-between">
         <label htmlFor="uppercase">
           <input
             type="checkbox"
