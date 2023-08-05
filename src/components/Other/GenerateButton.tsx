@@ -3,11 +3,19 @@ import React from "react";
 interface GenerateButtonProps {
   textLength: number;
   onGenerateClick: (generatedText: string) => void;
+  includeUppercase: boolean;
+  includeLowercase: boolean;
+  includeNumbers: boolean;
+  includeSymbols: boolean;
 }
 
 export const GenerateButton: React.FC<GenerateButtonProps> = ({
   textLength,
   onGenerateClick,
+  includeUppercase,
+  includeLowercase,
+  includeNumbers,
+  includeSymbols,
 }) => {
   function handleGenerateClick() {
     const generatedText = generateRandomWord(textLength);
@@ -15,7 +23,12 @@ export const GenerateButton: React.FC<GenerateButtonProps> = ({
   }
 
   function generateRandomWord(length: number): string {
-    const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let characters = "";
+    if (includeUppercase) characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (includeLowercase) characters += "abcdefghijklmnopqrstuvwxyz";
+    if (includeNumbers) characters += "0123456789";
+    if (includeSymbols) characters += "!@#$%^&*()_+[]{}|;:,.<>?";
+
     let result = "";
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * characters.length);

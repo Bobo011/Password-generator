@@ -11,6 +11,10 @@ import {
 function App() {
   const [sliderValue, setSliderValue] = useState<number>(6);
   const [generatedPassword, setGeneratedPassword] = useState<string>("");
+  const [includeUppercase, setIncludeUppercase] = useState(false);
+  const [includeLowercase, setIncludeLowercase] = useState(false);
+  const [includeNumbers, setIncludeNumbers] = useState(false);
+  const [includeSymbols, setIncludeSymbols] = useState(false);
 
   return (
     <div className="flex justify-center items-center h-screen bg-sky-400 w-full">
@@ -20,15 +24,29 @@ function App() {
           generatedPassword={generatedPassword}
         />
         <SliderBlue sliderValue={sliderValue} setSliderValue={setSliderValue} />
-        <CheckBoxes />
+        <CheckBoxes
+          includeUppercase={includeUppercase}
+          setIncludeUppercase={setIncludeUppercase}
+          includeLowercase={includeLowercase}
+          setIncludeLowercase={setIncludeLowercase}
+          includeNumbers={includeNumbers}
+          setIncludeNumbers={setIncludeNumbers}
+          includeSymbols={includeSymbols}
+          setIncludeSymbols={setIncludeSymbols}
+        />
         <TextStrength textLength={sliderValue} />
         <GenerateButton
           textLength={sliderValue}
           onGenerateClick={setGeneratedPassword}
+          includeUppercase={includeUppercase}
+          includeLowercase={includeLowercase}
+          includeNumbers={includeNumbers}
+          includeSymbols={includeSymbols}
         />
       </MainContainer>
     </div>
   );
 }
+
 
 export default App;
