@@ -1,5 +1,6 @@
 import React from "react";
 
+// Define the prop types for the CheckBoxes component
 interface CheckBoxesProps {
   includeUppercase: boolean;
   setIncludeUppercase: (value: boolean) => void;
@@ -11,6 +12,7 @@ interface CheckBoxesProps {
   setIncludeSymbols: (value: boolean) => void;
 }
 
+// CheckBoxes component
 export const CheckBoxes: React.FC<CheckBoxesProps> = ({
   includeUppercase,
   setIncludeUppercase,
@@ -23,7 +25,8 @@ export const CheckBoxes: React.FC<CheckBoxesProps> = ({
 }) => {
   return (
     <>
-      <div className="flex mb-5  mt-2 justify-between">
+      {/* Uppercase and lowercase letters checkbox */}
+      <div className="flex mb-5 mt-2 justify-between">
         <label htmlFor="uppercase">
           <input
             type="checkbox"
@@ -43,6 +46,7 @@ export const CheckBoxes: React.FC<CheckBoxesProps> = ({
           Include Lowercase Letters
         </label>
       </div>
+      {/* Numbers and symbols checkbox */}
       <div className="flex justify-between">
         <label htmlFor="numbers">
           <input
